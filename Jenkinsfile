@@ -6,6 +6,14 @@ pipeline {
         IMAGE_NAME = "shravani3001/simple-app"
     }
 
+stages {
+        stage('Clean Workspace') {
+            steps {
+                echo 'Cleaning workspace...'
+                sh 'rm -rf *'
+            }
+        }
+
     stages {
         stage('Clone Repo') {
             steps {
