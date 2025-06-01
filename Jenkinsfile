@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_CREDENTIALS = credentials('dockerhub-credentials') // Jenkins Credentials ID
+        DOCKER_HUB_CREDENTIALS = credentials('dockerhub-credentials') 
         IMAGE_NAME = "shravani3001/simple-app"
     }
 
-stages {
+    stages {
         stage('Clean Workspace') {
             steps {
                 echo 'Cleaning workspace...'
@@ -14,10 +14,9 @@ stages {
             }
         }
 
-    stages {
         stage('Clone Repo') {
             steps {
-                git branch: 'main', url: 'https://github.com/avigna3001/ci-cd-nodejs-app.git' // Replace with your repo URL
+                git 'https://github.com/avigna3001/ci-cd-nodejs-app.git'
             }
         }
 
@@ -29,10 +28,11 @@ stages {
 
         stage('Push to Docker Hub') {
             steps {
-                withDockerRegistry([ credentialsId: 'dockerhub-credentials', url: '' ]) {
+                withDockerRegistry([credentialsId: 'dockerhub-credentials', url: '']) {
                     sh 'docker push $IMAGE_NAME'
                 }
             }
         }
     }
 }
+
