@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/your-username/your-repo.git' // Replace with your repo URL
+                git branch: 'main', url: 'https://github.com/avigna3001/ci-cd-nodejs-app.git' // Replace with your repo URL
             }
         }
 
